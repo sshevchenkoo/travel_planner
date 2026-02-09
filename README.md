@@ -5,24 +5,32 @@ Backend CRUD application for managing travel projects and places to visit.
 Built as a test assignment to demonstrate RESTful API design, database interaction, and third-party API integration.
 
 ▶️ Run locally (without Docker)
+# Create virtual environment
 python -m venv venv
+
+# Activate virtual environment
 source venv/bin/activate
 
+# Install dependencies
 pip install -r requirements.txt
 
+# Run FastAPI server
 uvicorn app.main:app --reload
 
 
 API will be available at:
+
 http://127.0.0.1:8000
 
+
 Swagger UI:
+
 http://127.0.0.1:8000/docs
 
-Example API Requests
-Create a project with places
+🧪 Example API Requests
+1️⃣ Create a project with places
 
-external_id must exist in the Art Institute of Chicago API
+⚠️ external_id must exist in the Art Institute of Chicago API
 
 curl -X POST \
   http://127.0.0.1:8000/projects/ \
@@ -39,10 +47,10 @@ curl -X POST \
     ]
   }'
 
-Get all projects
+2️⃣ Get all projects
 curl -X GET http://127.0.0.1:8000/projects/
 
-Update a project
+3️⃣ Update a project
 curl -X PATCH \
   http://127.0.0.1:8000/projects/1 \
   -H "Content-Type: application/json" \
@@ -50,7 +58,7 @@ curl -X PATCH \
     "name": "Updated Project Name"
   }'
 
-Mark a place as visited
+4️⃣ Mark a place as visited
 curl -X PATCH \
   http://127.0.0.1:8000/projects/1/places/1 \
   -H "Content-Type: application/json" \
@@ -58,6 +66,8 @@ curl -X PATCH \
     "visited": true
   }'
 
-Delete a project
-Project cannot be deleted if any place is marked as visited
+5️⃣ Delete a project
+
+❌ Project cannot be deleted if any place is marked as visited
+
 curl -X DELETE http://127.0.0.1:8000/projects/1
